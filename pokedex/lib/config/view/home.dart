@@ -9,18 +9,10 @@ class Home extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return ListView(
       children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Mesagge()),
-            );
-          },
-          child: _Regions(size: size, name: 'kanto', url: 'lib/config/assets/kanto.png')
-          ),
-        //_Regions(size: size, name: 'Jhoto', url: 'lib/config/assets/johto.png'),
-        //_Regions(size: size, name: 'hoenn', url: 'lib/config/assets/hoenn.webp'),
-        //_Regions(size: size, name: 'sinnoh', url: 'lib/config/assets/sinnoh.webp')
+        _Regions(size: size, name: 'kanto', url: 'lib/config/assets/kanto.png'),
+        _Regions(size: size, name: 'Jhoto', url: 'lib/config/assets/johto.png'),
+        _Regions(size: size, name: 'hoenn', url: 'lib/config/assets/hoenn.webp'),
+        _Regions(size: size, name: 'sinnoh', url: 'lib/config/assets/sinnoh.webp')
       ]
       );
   }
@@ -39,28 +31,36 @@ class _Regions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-    color: Colors.amber,
-    child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Stack(
-          alignment: AlignmentDirectional.bottomEnd,
-          children: [
-            Image.asset(url,
-            width: size.width * 1,
-            height: size.width * 0.4,
-            fit: BoxFit.cover
-            ),
-            Text(
-              '$name 0 / 150',
-              overflow: TextOverflow.fade,
-              style: const TextStyle(
-                backgroundColor: Colors.amber,
-                ),
-            ),
-          ],
-        )),
-      );
+    return GestureDetector(
+      onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Mesagge()),
+            );
+      },
+      child: Card(
+      color: Colors.amber,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Stack(
+            alignment: AlignmentDirectional.bottomEnd,
+            children: [
+              Image.asset(url,
+              width: size.width * 1,
+              height: size.width * 0.4,
+              fit: BoxFit.cover
+              ),
+              Text(
+                '$name 0 / 150',
+                overflow: TextOverflow.fade,
+                style: const TextStyle(
+                  backgroundColor: Colors.amber,
+                  ),
+              ),
+            ],
+          )),
+        ),
+    );
   }
 }
 
